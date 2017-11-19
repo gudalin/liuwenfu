@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+    <head>
+        <title>购物</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/base.css">
+    </head>
+    <body>
+        <table class="head">
+            <tr>
+                <td><input class="allcheck" type="checkbox">全选</td>
+                <td>商品信息</td>
+                <td>商品参数</td>
+                <td>单价</td>
+                <td>数量</td>
+                <td>金额</td>
+                <td>操作</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><input class="shop" type="checkbox">店铺：男士护肤品</td>
+            </tr>
+        </table>
+        <table class="product" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td><input class="trade" type="checkbox"><img src="../images/pc1.jpg"></td>
+                    <td>夏季男士balabala什么乱七八糟护肤品洗面奶</td>
+                    <td>规格：默认<br>尺寸：16*13</td>
+                    <td class="single">￥<span>50</span></td>
+                    <td><div class="sub"><a href="#">-</a></div>
+                        <input class="num" type="text" value="1">
+                        <div class="add"><a>+</a></div>
+                    </td>
+                    <td class="sum">￥<span>50</span></td>
+                    <td>移除商品</td>
+                </tr>
+                <tr>
+                    <td><input class="trade" type="checkbox"><img src="../images/pc2.jpg"></td>
+                    <td>夏季男士balabala什么乱七八糟护肤品洗面奶</td>
+                    <td>规格：默认<br>尺寸：16*13</td>
+                    <td class="single">￥<span>200</span></td>
+                    <td><div class="sub"><a>-</a></div>
+                        <input class="num" type="text" value="1">
+                        <div class="add"><a>+</a></div></td>
+                    <td  class="sum">￥<span>200</span></td>
+                    <td>移除商品</td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <tr>
+                <td><input class="shop" type="checkbox">店铺：帅哥香水</td>
+            </tr>
+        </table>
+        <table class="product" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td><input class="trade" type="checkbox"><img src="../images/pc1.jpg"></td>
+                    <td>夏季男士balabala什么乱七八糟护肤品洗面奶</td>
+                    <td>规格：默认<br>尺寸：16*13</td>
+                    <td class="single">￥<span>98</span></td>
+                    <td><div class="sub"><a>-</a></div>
+                        <input class="num" type="text" value="1">
+                        <div class="add"><a>+</a></div></td>
+                    <td class="sum">￥<span>98</span></td>
+                    <td>移除商品</td>
+                </tr>
+                <tr>
+                    <td><input class="trade" type="checkbox"><img src="../images/pc1.jpg"></td>
+                    <td>夏季男士balabala什么乱七八糟护肤品洗面奶</td>
+                    <td>规格：默认<br>尺寸：16*13</td>
+                    <td class="single">￥<span>98</span></td>
+                    <td><div class="sub"><a>-</a></div>
+                        <input class="num" type="text" value="1">
+                        <div class="add"><a>+</a></div></td>
+                    <td class="sum">￥<span>98</span></td>
+                    <td>移除商品</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="end clearfix">
+            <div class="money">
+                <p>已选商品<span class="already-choose">0</span>件</p>
+                <p>共计：￥<span class="already-sum">0</span></p>
+                <button>结 算</button>
+            </div>
+        </div>
+        <script>
+        var numb = 1;
+        var already_sum = document.getElementsByClassName("already-sum");
+        var already_choose = document.getElementsByClassName("already-choose");
+        var tradec =document.getElementsByClassName("trade");
+        var numc =document.getElementsByClassName("num");
+        var addc =document.getElementsByClassName("add");
+        var subc =document.getElementsByClassName("sub");
+        for(var k=0;k<addc.length;k++){
+            console.log(addc[k]);
+            function aa() {
+                addc[k].onclick = function () {
+                    if(this.previousSibling.previousSibling.value>=1){
+                        this.previousSibling.previousSibling.value=parseInt(this.previousSibling.previousSibling.value)+1
+                        already_choose[0].innerHTML = this.previousSibling.previousSibling.value;
+                    }
+                };
+                subc[k].onclick = function () {
+                    if(this.nextSibling.nextSibling.value>1){
+                        this.nextSibling.nextSibling.value=parseInt(this.nextSibling.nextSibling.value)-1
+                        already_choose[0].innerHTML = this.nextSibling.nextSibling.value;
+                    }
+                }
+            }
+            aa();
+            tradec[k].onchange = function () {
+                if (this.checked == true){
+                    console.log(already_choose);
+                    already_choose[0].innerHTML = this.parentNode.parentNode.childNodes[9].childNodes[2].value*1+already_choose[0].innerHTML*1;
+                    console.log(numc);
+                    for(var ms=0;ms<numc.length;ms++){
+                        numc[ms].onchange = function () {
+                            if (this.parentNode.parentNode.childNodes[1].childNodes[0].checked == true) {
+                                console.log(this.parentNode.parentNode.childNodes)
+                                already_choose[0].innerHTML = this.parentNode.parentNode.childNodes[9].childNodes[2].value
+                            }
+                        }
+                    }
+                }else{
+                    already_choose[0].innerHTML = already_choose[0].innerHTML*1-this.parentNode.parentNode.childNodes[9].childNodes[2].value*1;
+                }
+            };
+
+        }
+
+
+        </script>
+    </body>
+</html>
